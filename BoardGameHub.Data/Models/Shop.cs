@@ -1,0 +1,33 @@
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using static BoardGameHub.Common.Entity.Const.Shop;
+
+namespace BoardGameHub.Data.Models
+{
+    [Comment("Shop in the system")]
+    public class Shop
+    {
+        [Comment("Shop Identifier")]
+        [Key]
+        public Guid Id { get; set; } = Guid.NewGuid();
+
+        [Comment("Shop Name")]
+        [Required]
+        [StringLength(ShopNameMaxLen, ErrorMessage = "Name cannot exceed 100 characters.")]
+        public string Name { get; set; } = null!;
+
+        [Comment("Shop Description")]
+        [Required]
+        [StringLength(ShopDescriptionMaxLen, ErrorMessage = "Description cannot exceed 1000 characters.")]
+        public string Description { get; set; } = null!;
+        
+        [Comment("Approval Status Description")]
+        [Required]
+        public bool ApprovalStatus {  get; set; }
+
+        [Comment("Owner Description")]
+        [Required]
+        [StringLength(ShopOwnerMaxLen, ErrorMessage = "Owner cannot exceed 50 characters.")]
+        public string Owner {  get; set; } = null!;
+    }
+}

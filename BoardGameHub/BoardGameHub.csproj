@@ -8,11 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.33" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.33" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.33" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.33" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.33" />
+	  <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.34" />
+	  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.34" />
+	  <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.34" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.34" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.34" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BoardGameHub.Common\BoardGameHub.Common.csproj" />
+    <ProjectReference Include="..\BoardGameHub.Core\BoardGameHub.Core.csproj" />
+    <ProjectReference Include="..\BoardGameHub.Data\BoardGameHub.Data.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BoardGameHub.Common\BoardGameHub.Common.csproj" />
+    <ProjectReference Include="..\BoardGameHub.Data\BoardGameHub.Data.csproj" />
+  </ItemGroup>
+
 </Project>
