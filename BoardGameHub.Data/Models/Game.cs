@@ -22,7 +22,11 @@ namespace BoardGameHub.Data.Models
         [Required]
         [Comment("Game Min Participants")]
         public int MinParticipants {  get; set; }
-        
+
+        [Required]
+        [Comment("Game Category Id")]
+        public Guid CategoryId { get; set; }
+
         [Required]
         [Comment("Game Category")]
         public Category Category {  get; set; }

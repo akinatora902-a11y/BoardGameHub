@@ -11,4 +11,8 @@
     <ProjectReference Include="..\BoardGameHub.Data\BoardGameHub.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\Shop\" />
+  </ItemGroup>
+
 </Project>
