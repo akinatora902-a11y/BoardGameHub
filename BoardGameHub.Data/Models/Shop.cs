@@ -23,7 +23,7 @@ namespace BoardGameHub.Data.Models
         
         [Comment("Approval Status Description")]
         [Required]
-        public bool ApprovalStatus {  get; set; }
+        public bool ApprovalStatus {  get; set; } = false;
 
         [Comment("Owner Description")]
         [Required]

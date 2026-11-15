@@ -1,3 +1,5 @@
+using BoardGameHub.Core.Contracts;
+using BoardGameHub.Core.Services;
 using BoardGameHub.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +21,8 @@ namespace BoardGameHub
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<BoardGameHubDbContext>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<IShopServices, ShopServices>();
 
             var app = builder.Build();
 
