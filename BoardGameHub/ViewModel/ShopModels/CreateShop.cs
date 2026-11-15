@@ -12,5 +12,9 @@ namespace BoardGameHub.Models.ShopModels
         [Required(ErrorMessage = "Name is required.")]
         [StringLength(shopNameMaxLen, MinimumLength = applicationConstMinimumLength, ErrorMessage = "Name must be between {2} and {1} characters.")]
         public string Name { get; set; } = null!;
+
+        [Required]
+        [StringLength(shopOwnerMaxLen, ErrorMessage = "Name must be between 0 and {2} characters.")]
+        public string Owner { get; set; }
     }
 }

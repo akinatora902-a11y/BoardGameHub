@@ -6,5 +6,7 @@ namespace BoardGameHub.Core.Contracts
     public interface IShopServices
     {
         Task<IEnumerable<ShopIndexResponse>> ShopIndexAsync();
+
+        Task<CreateShopRequest> CreateShopFormAsync();
     }
 }
