@@ -1,4 +1,5 @@
 using BoardGameHub.Core.Contracts;
+using BoardGameHub.Core.Mapping;
 using BoardGameHub.Core.Services;
 using BoardGameHub.Data;
 using Microsoft.AspNetCore.Identity;
@@ -23,6 +24,12 @@ namespace BoardGameHub
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<IShopServices, ShopServices>();
+
+            builder.Services.AddAutoMapper(cfg =>
+            {
+                cfg.AddMaps(typeof(ShopProfile).Assembly, typeof(Program).Assembly);
+            });
+            builder.Logging.AddFilter("LuckyPennySoftware.AutoMapper.License", LogLevel.None);
 
             var app = builder.Build();
 

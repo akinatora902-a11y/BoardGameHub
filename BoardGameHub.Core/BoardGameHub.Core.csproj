@@ -17,4 +17,8 @@
     <Folder Include="DTOs\Tournament\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="17.0.0" />
+  </ItemGroup>
+
 </Project>
