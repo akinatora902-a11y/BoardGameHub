@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BoardGameHub.Core.Contracts;
+using BoardGameHub.Core.DTOs.Shop.Request;
 using BoardGameHub.ViewModel.ShopModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,24 @@ namespace BoardGameHub.Controllers
             var allShopsViewModel = mapper.Map<IEnumerable<ShopIndex>>(allShopsResponse);
 
             return View(allShopsViewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            var shopFormRespons = await shopServices.CreateShopFormAsync();
+            var shopForm = mapper.Map<CreateShop>(shopFormRespons);
+
+            return View(shopForm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromForm] CreateShopRequest response)
+        {
+            var shopFormReques = await shopServices.CrateShopAsync(response);
+            var newShop = mapper.Map<CreateShop>(shopFormReques);
+
+            return RedirectToAction("Index", "Shop");
         }
     }
 }

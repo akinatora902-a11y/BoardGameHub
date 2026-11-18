@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using static BoardGameHub.Common.Application.Const.ApplicationConst;
 
-namespace BoardGameHub.Models.ShopModels
+namespace BoardGameHub.ViewModel.ShopModels
 {
     public class CreateShop
     {

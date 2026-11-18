@@ -7,6 +7,8 @@ namespace BoardGameHub.Core.Contracts
     {
         Task<IEnumerable<ShopIndexResponse>> ShopIndexAsync();
 
+        Task<CreateShopResponse> CrateShopAsync(CreateShopRequest response);
+
         Task<CreateShopRequest> CreateShopFormAsync();
     }
 }

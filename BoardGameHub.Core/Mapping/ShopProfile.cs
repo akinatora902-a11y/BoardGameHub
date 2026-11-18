@@ -9,11 +9,14 @@ namespace BoardGameHub.Core.Mapping
     {
         public ShopProfile()
         {
-            CreateMap<CreateShopRequest, Shop>()
-                .ForMember(d => d.Id, o => o.Ignore())
-                .ForMember(d => d.ApprovalStatus, o => o.Ignore());
-
             CreateMap<Shop, ShopIndexResponse>();
+
+            CreateMap<CreateShopRequest, Shop>()
+               .ForMember(d => d.Id, o => o.Ignore())
+               .ForMember(d => d.ApprovalStatus, o => o.Ignore());
+
+            CreateMap<Shop, CreateShopResponse>();
+
         }
     }
 }
