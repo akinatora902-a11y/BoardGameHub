@@ -19,9 +19,21 @@ else
         @foreach (var shop in Model)
         {
             <div class="col">
-                <div class="card h-100 shadow-sm">
+                <div class="card h-100 shadow-sm position-relative">
+                    
+                    <form asp-action="Delete" asp-route-id="@shop.Id" method="post"
+                          onsubmit="return confirm('Сигурни ли сте, че искате да изтриете този магазин?');"
+                          class="position-absolute top-0 end-0 m-2">
+                        <button type="submit"
+                                class="btn btn-danger btn-sm rounded-circle d-flex align-items-center justify-content-center p-0"
+                                style="width: 28px; height: 28px;"
+                                title="Delete">
+                            &times;
+                        </button>
+                    </form>
+
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">@shop.Name</h5>
+                        <h5 class="card-title pe-4">@shop.Name</h5>
                         <a asp-action="Details" asp-route-id="@shop.Id"
                            class="btn btn-outline-primary mt-auto">
                             More information

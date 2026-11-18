@@ -57,6 +57,34 @@ namespace BoardGameHub.Core.Services
             return shopForm;
         }
 
+        public async Task<bool> DeleteShopFormAsync(Guid? Id)
+        {
+            if (Id == Guid.Empty)
+            {
+                return false;
+            }
+
+            var shopIsExist = await dbContext
+                .Shop
+                .FindAsync(Id);
+
+            if (shopIsExist == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                dbContext.Shop.Remove(shopIsExist);
+                await dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (ArgumentException ex) 
+            {
+                return false;
+            }
+        }
+
         public async Task<IEnumerable<ShopIndexResponse>> ShopIndexAsync()
         {
             var allShops = await dbContext.Shop

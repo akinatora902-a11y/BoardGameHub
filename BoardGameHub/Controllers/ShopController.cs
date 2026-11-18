@@ -33,5 +33,18 @@ namespace BoardGameHub.Controllers
 
             return RedirectToAction("Index", "Shop");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete([FromRoute] Guid? id) 
+        {
+            var shopForDelete = await shopServices.DeleteShopFormAsync(id);
+
+            if (shopForDelete == false) 
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction("Index", "Shop");
+        }
     }
 }
