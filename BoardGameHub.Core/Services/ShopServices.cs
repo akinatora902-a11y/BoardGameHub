@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using BoardGameHub.Common.Entity.Const;
 using BoardGameHub.Core.Contracts;
 using BoardGameHub.Core.DTOs.Shop.Request;
 using BoardGameHub.Core.DTOs.Shop.Response;
 using BoardGameHub.Data;
 using BoardGameHub.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace BoardGameHub.Core.Services
 {
@@ -19,10 +21,6 @@ namespace BoardGameHub.Core.Services
                 throw new ArgumentException("The create shop request cannot be null.");
             }
 
-            if (string.IsNullOrWhiteSpace(response.Name)) 
-            {
-                throw new ArgumentException("The Name is request cannot be null/WhiteSpace.");
-            }
 
             bool shopExist = await dbContext
                 .Shop
@@ -85,6 +83,38 @@ namespace BoardGameHub.Core.Services
             }
         }
 
+        public async Task<EditShopResponse> EditShopFormAsync(Guid? id)
+        {
+            var shopExist = await dbContext.Shop.FindAsync(id);
+            if (shopExist == null)
+            {
+                throw new ArgumentException("");
+            }
+
+           var shop = await dbContext.Shop
+                .Where(s => s.Id == id)
+                .ProjectTo<EditShopResponse>(mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
+
+
+            return shop;
+        }
+
+        public async Task<bool> EditShopRequestAsync(EditShopRequest request)
+        {
+            var shop = await dbContext.Shop.FindAsync(request.Id);
+
+            if (shop == null)
+            {
+                throw new ArgumentException($"Shop with id {request.Id} not found");
+            }
+
+            mapper.Map(request, shop);
+
+            await dbContext.SaveChangesAsync();
+
+            return true;
+        }
         public async Task<IEnumerable<ShopIndexResponse>> ShopIndexAsync()
         {
             var allShops = await dbContext.Shop

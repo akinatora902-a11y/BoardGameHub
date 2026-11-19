@@ -9,5 +9,7 @@ namespace BoardGameHub.Core.Contracts
         Task<CreateShopResponse> CrateShopAsync(CreateShopRequest response);
         Task<CreateShopRequest> CreateShopFormAsync();
         Task <bool> DeleteShopFormAsync(Guid? Id);
+        Task<EditShopResponse> EditShopFormAsync(Guid? id); 
+        Task<bool> EditShopRequestAsync(EditShopRequest request);
     }
 }

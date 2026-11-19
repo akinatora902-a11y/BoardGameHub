@@ -34,10 +34,17 @@ else
 
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title pe-4">@shop.Name</h5>
-                        <a asp-action="Details" asp-route-id="@shop.Id"
-                           class="btn btn-outline-primary mt-auto">
-                            More information
-                        </a>
+
+                        <div class="d-flex gap-2 mt-auto">
+                            <a asp-action="Details" asp-route-id="@shop.Id"
+                               class="btn btn-outline-primary flex-fill">
+                                More information
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@shop.Id"
+                               class="btn btn-outline-secondary">
+                                Edit
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

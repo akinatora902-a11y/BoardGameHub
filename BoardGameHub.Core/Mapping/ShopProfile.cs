@@ -16,6 +16,8 @@ namespace BoardGameHub.Core.Mapping
                .ForMember(d => d.ApprovalStatus, o => o.Ignore());
 
             CreateMap<Shop, CreateShopResponse>();
+            CreateMap<Shop, EditShopResponse>();
+            CreateMap<EditShopRequest, Shop>();
 
         }
     }

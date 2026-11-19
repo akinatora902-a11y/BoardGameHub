@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using static BoardGameHub.Common.Entity.Const.Shop;
+using static BoardGameHub.Common.Entity.Const.ShopConst;
 
 namespace BoardGameHub.Data.Models
 {

@@ -12,6 +12,8 @@ namespace BoardGameHub.Mapping
             CreateMap<ShopIndexResponse, ShopIndex>();
             CreateMap<CreateShopRequest, CreateShop>();
             CreateMap<CreateShopResponse, CreateShop>();
+            CreateMap<EditShopResponse, EditShop>();
+            CreateMap<EditShop, EditShopRequest>();
         }
     }
 }

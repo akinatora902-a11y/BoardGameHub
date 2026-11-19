@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BoardGameHub.Core.Contracts;
 using BoardGameHub.Core.DTOs.Shop.Request;
+using BoardGameHub.Core.DTOs.Shop.Response;
 using BoardGameHub.ViewModel.ShopModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,6 +46,31 @@ namespace BoardGameHub.Controllers
             }
 
             return RedirectToAction("Index", "Shop");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit([FromRoute] Guid? id)
+        {
+            var shopFormReques = await shopServices.EditShopFormAsync(id);
+            var shopForEdit = mapper.Map<EditShop> (shopFormReques);
+
+            return View(shopForEdit);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditShop model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var request = mapper.Map<EditShopRequest>(model);
+            var result = await shopServices.EditShopRequestAsync(request);
+
+            if (!result) return NotFound();
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
