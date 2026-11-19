@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace BoardGameHub.Data.Models
 {
@@ -13,7 +14,7 @@ namespace BoardGameHub.Data.Models
         public string UserId { get; set; } = null!; 
 
         [ForeignKey(nameof(UserId))]
-        public ApplicationUser User { get; set; } = null!;
+        public IdentityUser User { get; set; } = null!;
 
         [Required]
         [Comment("Foreign Key to the Tournament.")]

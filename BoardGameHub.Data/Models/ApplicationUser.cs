@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BoardGameHub.Data.Models
 {
-    public class ApplicationUser : IdentityUser
+    public class AplicationUser : IdentityUser
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }

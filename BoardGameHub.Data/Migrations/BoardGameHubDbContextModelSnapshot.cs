@@ -533,7 +533,7 @@ namespace BoardGameHub.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("BoardGameHub.Data.Models.ApplicationUser", b =>
+            modelBuilder.Entity("BoardGameHub.Data.Models.IdentityUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
@@ -543,7 +543,7 @@ namespace BoardGameHub.Data.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("ApplicationUser");
+                    b.HasDiscriminator().HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("BoardGameHub.Data.Models.Game", b =>
@@ -584,7 +584,7 @@ namespace BoardGameHub.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BoardGameHub.Data.Models.ApplicationUser", "User")
+                    b.HasOne("BoardGameHub.Data.Models.IdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

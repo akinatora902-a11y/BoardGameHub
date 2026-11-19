@@ -11,14 +11,25 @@
 	  <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.34" />
 	  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.34" />
 	  <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.34" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.34">
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	    <PrivateAssets>all</PrivateAssets>
+	  </PackageReference>
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.34" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.34" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.34">
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	    <PrivateAssets>all</PrivateAssets>
+	  </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BoardGameHub.Common\BoardGameHub.Common.csproj" />
     <ProjectReference Include="..\BoardGameHub.Core\BoardGameHub.Core.csproj" />
     <ProjectReference Include="..\BoardGameHub.Data\BoardGameHub.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Pages\Account\" />
   </ItemGroup>
 
 </Project>
