@@ -1,4 +1,5 @@
 ﻿using BoardGameHub.Data.Configurations;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BoardGameHub.Data
 {
-    public class BoardGameHubDbContext : IdentityDbContext
+    public class BoardGameHubDbContext : IdentityDbContext<IdentityUser>
     {
         public BoardGameHubDbContext(DbContextOptions<BoardGameHubDbContext> options) 
             : base(options) 
