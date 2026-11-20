@@ -24,10 +24,12 @@ namespace BoardGameHub
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<IShopServices, ShopServices>();
+            builder.Services.AddScoped<IAdminServices, AdminServices>();
 
             builder.Services.AddAutoMapper(cfg =>
             {
                 cfg.AddMaps(typeof(ShopProfile).Assembly, typeof(Program).Assembly);
+                cfg.AddMaps(typeof(AdminProfile).Assembly, typeof(Program).Assembly);
             });
             builder.Logging.AddFilter("LuckyPennySoftware.AutoMapper.License", LogLevel.None);
 

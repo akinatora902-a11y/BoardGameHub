@@ -1,0 +1,72 @@
+﻿@using BoardGameHub.ViewModel.Admin
+@model IEnumerable<AdminIndex>
+
+@{
+    ViewData["Title"] = "Admin Panel - Shops";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Shops Administration</h2>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info" role="alert">
+            No shops found.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Status</th>
+                        <th scope="col" class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var shop in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@shop.Name</td>
+                            <td>
+                                @if (shop.ApprovalStatus)
+                                {
+                                    <span class="badge bg-success">Approved</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark">Pending</span>
+                                }
+                            </td>
+                            <td class="text-end">
+                                <div class="d-inline-flex gap-2">
+                                    @if (!shop.ApprovalStatus)
+                                    {
+                                        <form asp-controller="Admin" asp-action="Approve" asp-route-id="@shop.Id" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-sm btn-success">
+                                                Approve
+                                            </button>
+                                        </form>
+                                    }
+                                    <form asp-controller="Shop" asp-action="Delete" asp-route-id="@shop.Id" method="post" class="d-inline"
+                                          onsubmit="return confirm('Are you sure you want to delete @shop.Name?');">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-sm btn-outline-danger rounded-circle" title="Delete @shop.Name">
+                                            &times;
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+</div>

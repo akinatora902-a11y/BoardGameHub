@@ -118,6 +118,7 @@ namespace BoardGameHub.Core.Services
         public async Task<IEnumerable<ShopIndexResponse>> ShopIndexAsync()
         {
             var allShops = await dbContext.Shop
+                .Where(s => s.ApprovalStatus)
                 .OrderBy(sh => sh.Name)
                 .ProjectTo<ShopIndexResponse>(mapper.ConfigurationProvider)
                 .ToArrayAsync();

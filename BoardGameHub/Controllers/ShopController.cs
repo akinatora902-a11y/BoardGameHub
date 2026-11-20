@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using BoardGameHub.Core.Contracts;
 using BoardGameHub.Core.DTOs.Shop.Request;
-using BoardGameHub.Core.DTOs.Shop.Response;
 using BoardGameHub.ViewModel.ShopModels;
 using Microsoft.AspNetCore.Mvc;
 

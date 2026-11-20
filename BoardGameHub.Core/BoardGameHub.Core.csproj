@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DTOs\Admin\Request\" />
     <Folder Include="DTOs\Game\" />
     <Folder Include="DTOs\Category\" />
     <Folder Include="DTOs\Tournament\" />
