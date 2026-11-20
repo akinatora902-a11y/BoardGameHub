@@ -2,6 +2,7 @@ using BoardGameHub.Core.Contracts;
 using BoardGameHub.Core.Mapping;
 using BoardGameHub.Core.Services;
 using BoardGameHub.Data;
+using BoardGameHub.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,17 +15,15 @@ namespace BoardGameHub
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<BoardGameHubDbContext>(options =>
-                options.UseSqlServer(connectionString));
+           
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<BoardGameHubDbContext>();
+           
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddScoped<IShopServices, ShopServices>();
-            builder.Services.AddScoped<IAdminServices, AdminServices>();
+            builder.Services.AddApplicationDbContext(builder.Configuration);
+            builder.Services.AddApplicationIdentity(builder.Configuration);
+            builder.Services.AddApplicationServices();
 
             builder.Services.AddAutoMapper(cfg =>
             {

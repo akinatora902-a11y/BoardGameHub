@@ -47,7 +47,6 @@
                                     @if (!shop.ApprovalStatus)
                                     {
                                         <form asp-controller="Admin" asp-action="Approve" asp-route-id="@shop.Id" method="post" class="d-inline">
-                                            @Html.AntiForgeryToken()
                                             <button type="submit" class="btn btn-sm btn-success">
                                                 Approve
                                             </button>
@@ -55,7 +54,6 @@
                                     }
                                     <form asp-controller="Shop" asp-action="Delete" asp-route-id="@shop.Id" method="post" class="d-inline"
                                           onsubmit="return confirm('Are you sure you want to delete @shop.Name?');">
-                                        @Html.AntiForgeryToken()
                                         <button type="submit" class="btn btn-sm btn-outline-danger rounded-circle" title="Delete @shop.Name">
                                             &times;
                                         </button>
