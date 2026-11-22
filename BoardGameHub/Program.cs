@@ -25,12 +25,7 @@ namespace BoardGameHub
             builder.Services.AddApplicationIdentity(builder.Configuration);
             builder.Services.AddApplicationServices();
 
-            builder.Services.AddAutoMapper(cfg =>
-            {
-                cfg.AddMaps(typeof(ShopProfile).Assembly, typeof(Program).Assembly);
-                cfg.AddMaps(typeof(AdminProfile).Assembly, typeof(Program).Assembly);
-            });
-            builder.Logging.AddFilter("LuckyPennySoftware.AutoMapper.License", LogLevel.None);
+            builder.Services.AddApplicationMapper();
 
             var app = builder.Build();
 
