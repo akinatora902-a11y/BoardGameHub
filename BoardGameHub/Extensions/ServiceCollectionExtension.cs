@@ -40,9 +40,54 @@ namespace BoardGameHub.Extensions
         public static IServiceCollection AddApplicationIdentity(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDefaultIdentity<IdentityUser>(options => ConfigureIdentityOptions(options, configuration))
+               .AddRoles<IdentityRole>()
                .AddEntityFrameworkStores<BoardGameHubDbContext>();
             
             return services;
+        }
+
+        public static async Task SeedRolesAsync(this WebApplication app)
+        {
+            using var scope = app.Services.CreateScope();
+
+            var roleManager = scope.ServiceProvider
+                .GetRequiredService<RoleManager<IdentityRole>>();
+
+            string[] roles = { "Admin", "User", "Shop" };
+
+            foreach (var role in roles)
+            {
+                if (!await roleManager.RoleExistsAsync(role))
+                {
+                    await roleManager.CreateAsync(new IdentityRole(role));
+                }
+            }
+        }
+
+        public static async Task SeedUsersAsync(this WebApplication app)
+        {
+            using var scope = app.Services.CreateScope();
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+            await CreateUser(userManager, "main@abv.bg", "Admin");
+            await CreateUser(userManager, "user@abv.bg", "User");
+            await CreateUser(userManager, "shop@abv.bg", "Shop");
+        }
+
+        private static async Task CreateUser(UserManager<IdentityUser> userManager, string email, string role)
+        {
+            var user = await userManager.FindByEmailAsync(email);
+
+            if (user == null)
+            {
+                user = new IdentityUser { UserName = email, Email = email };
+                await userManager.CreateAsync(user, "123456");
+            }
+
+            if (!await userManager.IsInRoleAsync(user, role))
+            {
+                await userManager.AddToRoleAsync(user, role);
+            }
         }
 
         private static void ConfigureIdentityOptions(IdentityOptions options, IConfiguration configuration)
