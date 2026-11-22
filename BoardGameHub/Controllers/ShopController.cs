@@ -2,12 +2,15 @@
 using BoardGameHub.Core.Contracts;
 using BoardGameHub.Core.DTOs.Shop.Request;
 using BoardGameHub.ViewModel.ShopModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BoardGameHub.Controllers
 {
+    [Authorize]
     public class ShopController(IShopServices shopServices, IMapper mapper) : Controller
     {
+        [Authorize (Roles = "Admin,User,Shop")]
         public async Task<IActionResult> Index()
         {
             var allShopsResponse = await shopServices.ShopIndexAsync();
@@ -17,6 +20,7 @@ namespace BoardGameHub.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Shop")]
         public async Task<IActionResult> Create()
         {
             var shopFormRespons = await shopServices.CreateShopFormAsync();
@@ -26,6 +30,7 @@ namespace BoardGameHub.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,Shop")]
         public async Task<IActionResult> Create([FromForm] CreateShopRequest response)
         {
             var shopFormReques = await shopServices.CrateShopAsync(response);
@@ -35,6 +40,7 @@ namespace BoardGameHub.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,Shop")]
         public async Task<IActionResult> Delete([FromRoute] Guid? id) 
         {
             var shopForDelete = await shopServices.DeleteShopFormAsync(id);
@@ -48,6 +54,7 @@ namespace BoardGameHub.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Shop")]
         public async Task<IActionResult> Edit([FromRoute] Guid? id)
         {
             var shopFormReques = await shopServices.EditShopFormAsync(id);
@@ -57,6 +64,7 @@ namespace BoardGameHub.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,Shop")]
         public async Task<IActionResult> Edit(EditShop model)
         {
             if (!ModelState.IsValid)

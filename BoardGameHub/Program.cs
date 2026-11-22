@@ -49,6 +49,7 @@ namespace BoardGameHub
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

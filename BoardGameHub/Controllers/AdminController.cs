@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using BoardGameHub.Core.Contracts;
 using BoardGameHub.ViewModel.Admin;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BoardGameHub.Controllers
 {
+    [Authorize]
     public class AdminController(IAdminServices adminServices, IMapper mapper) : Controller
     {
         public async Task<IActionResult> Index() 

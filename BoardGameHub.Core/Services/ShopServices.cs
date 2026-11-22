@@ -35,8 +35,8 @@ namespace BoardGameHub.Core.Services
 
             try
             {
-                dbContext.Shop.AddAsync(newShop);
-                dbContext.SaveChangesAsync();
+                await dbContext.Shop.AddAsync(newShop);
+                await dbContext.SaveChangesAsync();
 
                 var resultResponse = mapper.Map<CreateShopResponse>(newShop);
                 return resultResponse;
@@ -47,14 +47,12 @@ namespace BoardGameHub.Core.Services
             }
             
         }
-
         public async Task<CreateShopRequest> CreateShopFormAsync()
         {
             var shopForm = new CreateShopRequest();
 
             return shopForm;
         }
-
         public async Task<bool> DeleteShopFormAsync(Guid? Id)
         {
             if (Id == Guid.Empty)
@@ -82,7 +80,6 @@ namespace BoardGameHub.Core.Services
                 return false;
             }
         }
-
         public async Task<EditShopResponse> EditShopFormAsync(Guid? id)
         {
             var shopExist = await dbContext.Shop.FindAsync(id);
@@ -99,7 +96,6 @@ namespace BoardGameHub.Core.Services
 
             return shop;
         }
-
         public async Task<bool> EditShopRequestAsync(EditShopRequest request)
         {
             var shop = await dbContext.Shop.FindAsync(request.Id);
