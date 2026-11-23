@@ -7,8 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BoardGameHub.Controllers
 {
-    [Authorize]
-    public class ShopController(IShopServices shopServices, IMapper mapper) : Controller
+    public class ShopController(IShopServices shopServices, IMapper mapper) : BaseController
     {
         [Authorize (Roles = "Admin,User,Shop")]
         public async Task<IActionResult> Index()
@@ -86,7 +85,7 @@ namespace BoardGameHub.Controllers
         {
             var shopDetailResponse = await shopServices.DetailAsync(id);
             var shopDetail = mapper.Map<ShopDetail>(shopDetailResponse);
-
+            
             return View(shopDetail);
         }
     }

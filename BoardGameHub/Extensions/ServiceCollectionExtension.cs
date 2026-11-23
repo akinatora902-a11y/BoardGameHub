@@ -14,6 +14,7 @@ namespace BoardGameHub.Extensions
         {
             services.AddScoped<IShopServices, ShopServices>();
             services.AddScoped<IAdminServices, AdminServices>();
+            services.AddScoped<ITournamentServices, TournamentServices>();
 
             services.AddMvc(options =>
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));

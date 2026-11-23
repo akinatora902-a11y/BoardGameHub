@@ -1,0 +1,59 @@
+﻿@using System.Globalization
+@model IEnumerable<BoardGameHub.ViewModel.TournamentModels.TournamentIndex>
+
+<section class="mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0">Tournaments</h4>
+
+        @if (Model != null && Model.Any())
+        {
+            <span class="badge bg-dark rounded-pill">@Model.Count()</span>
+        }
+    </div>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-info mb-0">
+            There are no tournaments scheduled for this store yet.
+        </div>
+    }
+    else
+    {
+        <div class="card shadow-sm">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Starts</th>
+                            <th scope="col">Status</th>
+                            <th scope="col" class="text-end">Game</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var tournament in Model)
+                        {
+                            <tr>
+                                <td class="fw-semibold">@tournament.Title</td>
+                                <td>
+                                    @tournament.StartDateAndTime.ToString("dd MMM yyyy, HH:mm", CultureInfo.InvariantCulture)
+                                </td>
+                                <td>
+                                    <span class="badge @(tournament.Status ? "bg-success" : "bg-secondary")">
+                                        @(tournament.Status ? "Active" : "Closed")
+                                    </span>
+                                </td>
+                                <td class="text-end">
+                                    <a asp-controller="Game" asp-action="Details" asp-route-id="@tournament.GameId"
+                                       class="btn btn-sm btn-outline-primary">
+                                        View game
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</section>

@@ -6,8 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BoardGameHub.Controllers
 {
-    [Authorize]
-    public class AdminController(IAdminServices adminServices, IMapper mapper) : Controller
+    public class AdminController(IAdminServices adminServices, IMapper mapper) : BaseController
     {
         public async Task<IActionResult> Index() 
         {

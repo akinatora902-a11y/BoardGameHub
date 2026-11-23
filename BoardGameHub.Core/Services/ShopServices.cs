@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace BoardGameHub.Core.Services
 {
-    public class ShopServices(BoardGameHubDbContext dbContext, IMapper mapper) : IShopServices
+    public class ShopServices(BoardGameHubDbContext dbContext, IMapper mapper, ITournamentServices tournamentServices) : IShopServices
     {
         public async Task<CreateShopResponse> CrateShopAsync(CreateShopRequest response)
         {
@@ -80,7 +80,6 @@ namespace BoardGameHub.Core.Services
                 return false;
             }
         }
-
         public async Task<ShopDetailResponse> DetailAsync(Guid? id)
         {
 
@@ -93,11 +92,10 @@ namespace BoardGameHub.Core.Services
                 .Where(shop => shop.Id == id)
                 .ProjectTo<ShopDetailResponse>(mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
-
+            shop.Tournaments = (await tournamentServices.TournamentsIndexAsync(id.Value)).ToList();
             return shop;
                 
         }
-
         public async Task<EditShopResponse> EditShopFormAsync(Guid? id)
         {
             var shopExist = await dbContext.Shop.FindAsync(id);
