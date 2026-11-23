@@ -80,6 +80,24 @@ namespace BoardGameHub.Core.Services
                 return false;
             }
         }
+
+        public async Task<ShopDetailResponse> DetailAsync(Guid? id)
+        {
+
+            if (id == null || id == Guid.Empty)
+            {
+                return null;
+            }
+
+            var shop = await dbContext.Shop
+                .Where(shop => shop.Id == id)
+                .ProjectTo<ShopDetailResponse>(mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
+
+            return shop;
+                
+        }
+
         public async Task<EditShopResponse> EditShopFormAsync(Guid? id)
         {
             var shopExist = await dbContext.Shop.FindAsync(id);

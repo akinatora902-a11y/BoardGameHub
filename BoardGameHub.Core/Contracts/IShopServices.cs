@@ -11,5 +11,6 @@ namespace BoardGameHub.Core.Contracts
         Task <bool> DeleteShopFormAsync(Guid? Id);
         Task<EditShopResponse> EditShopFormAsync(Guid? id); 
         Task<bool> EditShopRequestAsync(EditShopRequest request);
+        Task <ShopDetailResponse> DetailAsync(Guid? id);
     }
 }

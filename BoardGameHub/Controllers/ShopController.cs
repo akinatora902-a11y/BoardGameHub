@@ -79,5 +79,15 @@ namespace BoardGameHub.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin,Shop,User")]
+        public async Task<IActionResult> Details(Guid? id)
+        {
+            var shopDetailResponse = await shopServices.DetailAsync(id);
+            var shopDetail = mapper.Map<ShopDetail>(shopDetailResponse);
+
+            return View(shopDetail);
+        }
     }
 }

@@ -1,10 +1,4 @@
-using BoardGameHub.Core.Contracts;
-using BoardGameHub.Core.Mapping;
-using BoardGameHub.Core.Services;
-using BoardGameHub.Data;
 using BoardGameHub.Extensions;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace BoardGameHub
 {
@@ -20,6 +14,7 @@ namespace BoardGameHub
 
            
             builder.Services.AddControllersWithViews();
+
 
             builder.Services.AddApplicationDbContext(builder.Configuration);
             builder.Services.AddApplicationIdentity(builder.Configuration);

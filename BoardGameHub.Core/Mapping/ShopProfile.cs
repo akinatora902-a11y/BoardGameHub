@@ -11,13 +11,12 @@ namespace BoardGameHub.Core.Mapping
         {
             CreateMap<Shop, ShopIndexResponse>();
 
-            CreateMap<CreateShopRequest, Shop>()
-               .ForMember(d => d.Id, o => o.Ignore())
-               .ForMember(d => d.ApprovalStatus, o => o.Ignore());
+            CreateMap<CreateShopRequest, Shop>();
 
             CreateMap<Shop, CreateShopResponse>();
             CreateMap<Shop, EditShopResponse>();
             CreateMap<EditShopRequest, Shop>();
+            CreateMap<Shop,ShopDetailResponse>();
 
         }
     }

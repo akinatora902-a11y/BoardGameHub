@@ -3,6 +3,7 @@ using BoardGameHub.Core.Mapping;
 using BoardGameHub.Core.Services;
 using BoardGameHub.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BoardGameHub.Extensions
@@ -13,6 +14,9 @@ namespace BoardGameHub.Extensions
         {
             services.AddScoped<IShopServices, ShopServices>();
             services.AddScoped<IAdminServices, AdminServices>();
+
+            services.AddMvc(options =>
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
 
             return services;
         }
