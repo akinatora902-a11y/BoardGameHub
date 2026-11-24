@@ -1,13 +1,15 @@
 ﻿@using System.Globalization
 @model IEnumerable<BoardGameHub.ViewModel.TournamentModels.TournamentIndex>
 
-<section class="mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 class="mb-0">Tournaments</h4>
+<section class="mt-4 tournaments-dark-section">
+    <div class="d-flex justify-content-between align-items-center mb-3 tournaments-header">
+        <h4 class="mb-0 tournaments-title">
+            <span class="tournaments-title-accent"></span>Tournaments
+        </h4>
 
         @if (Model != null && Model.Any())
         {
-            <span class="badge bg-dark rounded-pill">@Model.Count()</span>
+            <span class="badge rounded-pill badge-count-red">@Model.Count()</span>
         }
     </div>
 
@@ -19,10 +21,10 @@
     }
     else
     {
-        <div class="card shadow-sm">
+        <div class="card card-dark-red">
             <div class="table-responsive">
                 <table class="table table-hover align-middle mb-0">
-                    <thead class="table-light">
+                    <thead>
                         <tr>
                             <th scope="col">Title</th>
                             <th scope="col">Starts</th>
@@ -36,17 +38,31 @@
                             <tr>
                                 <td class="fw-semibold">@tournament.Title</td>
                                 <td>
-                                    @tournament.StartDateAndTime.ToString("dd MMM yyyy, HH:mm", CultureInfo.InvariantCulture)
+                                    <span>
+                                        @tournament.StartDateAndTime.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)
+                                    </span>
+                                    <small class="ms-1">
+                                        @tournament.StartDateAndTime.ToString("HH:mm", CultureInfo.InvariantCulture)
+                                    </small>
                                 </td>
                                 <td>
-                                    <span class="badge @(tournament.Status ? "bg-success" : "bg-secondary")">
-                                        @(tournament.Status ? "Active" : "Closed")
-                                    </span>
+                                    @if (tournament.Status)
+                                    {
+                                        <span class="status-pill status-active">
+                                            <span class="status-dot"></span> Active
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="status-pill status-closed">
+                                            <span class="status-dot"></span> Closed
+                                        </span>
+                                    }
                                 </td>
                                 <td class="text-end">
                                     <a asp-controller="Game" asp-action="Details" asp-route-id="@tournament.GameId"
                                        class="btn btn-sm btn-outline-primary">
-                                        View game
+                                        View game &rarr;
                                     </a>
                                 </td>
                             </tr>

@@ -1,30 +1,38 @@
 ﻿@model BoardGameHub.ViewModel.ShopModels.ShopDetail
 
 @{
-    ViewData["Title"] = "Детайли";
+    ViewData["Title"] = "Details";
 }
 
 <div class="container py-4">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <div class="card shadow-sm border-0">
-                <div class="card-body p-4">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="card-title mb-0">Описание</h4>
-                        <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
-                            Назад
-                        </a>
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center py-3 px-4">
+                    <div class="d-flex align-items-center">
+                        <span class="tournaments-title-accent"></span>
+                        <h4 class="card-title mb-0 text-uppercase" style="font-size: 1.05rem; letter-spacing: 0.6px;">
+                            Description
+                        </h4>
                     </div>
 
-                    <hr />
+                    <a asp-action="Index" class="btn btn-outline-primary btn-sm px-3">
+                        &larr; Back
+                    </a>
+                </div>
 
+                <div class="card-body p-4">
                     @if (!string.IsNullOrWhiteSpace(Model.Description))
                     {
-                        <p class="card-text fs-5 mb-0">@Model.Description</p>
+                        <p class="card-text fs-5 mb-0" style="line-height: 1.7;">
+                            @Model.Description
+                        </p>
                     }
                     else
                     {
-                        <p class="text-muted fst-italic mb-0">Няма добавено описание.</p>
+                        <div class="alert alert-info mb-0">
+                            Няма добавено описание.
+                        </div>
                     }
                 </div>
             </div>
