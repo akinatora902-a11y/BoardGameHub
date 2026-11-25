@@ -1,0 +1,28 @@
+﻿@using BoardGameHub.Core.DTOs.Shop.Request
+@model SearchRequest
+
+<form id="searchForm" asp-controller="ShopsApi" asp-action="Search" method="get" class="mb-0">
+    <div class="input-group bgh-search-group">
+        <span class="input-group-text bgh-search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+            </svg>
+        </span>
+
+        <input asp-for="Name"
+               class="form-control bgh-search-input"
+               placeholder="Search stores..."
+               autocomplete="off" />
+
+        <button type="button"
+                id="clearSearchBtn"
+                class="btn bgh-search-clear d-none"
+                title="Clear">
+            &times;
+        </button>
+
+        <button type="submit" class="btn btn-primary px-3 fw-semibold">
+            Search
+        </button>
+    </div>
+</form>

@@ -284,3 +284,68 @@ footer.footer {
 }
 
 .form-control
+
+.bgh-search-group {
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(124, 58, 237, 0.45);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    min-width: 280px;
+}
+
+.bgh-search-group:focus-within {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 0.2rem rgba(124, 58, 237, 0.25);
+}
+
+.bgh-search-group {
+    background-color: #161322;
+    border: 1.5px solid rgba(139, 92, 246, 0.75);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    min-width: 310px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+    .bgh-search-group:focus-within {
+        border-color: #a78bfa;
+        box-shadow: 0 0 0 0.22rem rgba(139, 92, 246, 0.35);
+    }
+
+.bgh-search-icon {
+    background: transparent;
+    border: none;
+    color: #c4b5fd;
+    padding-left: 0.85rem;
+    padding-right: 0.45rem;
+}
+
+.bgh-search-input,
+.bgh-search-input:focus {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #ffffff !important;
+    font-size: 0.95rem;
+    padding-top: 0.48rem;
+    padding-bottom: 0.48rem;
+}
+
+    .bgh-search-input::placeholder {
+        color: rgba(226, 232, 240, 0.65);
+    }
+
+.bgh-search-clear {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: 0 0.65rem;
+}
+
+    .bgh-search-clear:hover {
+        color: #ffffff;
+    }

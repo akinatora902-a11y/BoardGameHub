@@ -92,7 +92,9 @@ namespace BoardGameHub.Core.Services
                 .Where(shop => shop.Id == id)
                 .ProjectTo<ShopDetailResponse>(mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
-            shop.Tournaments = (await tournamentServices.TournamentsIndexAsync(id.Value)).ToList();
+
+            shop.Tournaments = (await tournamentServices.TournamentsIndexAsync(id.Value))
+                .ToList();
             return shop;
                 
         }
@@ -127,6 +129,25 @@ namespace BoardGameHub.Core.Services
 
             return true;
         }
+
+        public async Task<SearchRequest> SearchAsync(SearchRequest request)
+        {
+            var search = dbContext.Shop
+                .AsNoTracking();
+
+            if (!string.IsNullOrWhiteSpace(request.Name))
+            {
+                search = search
+                    .Where(s => s.Name.Contains(request.Name));
+            }
+
+            var searchShop = await search
+                .ProjectTo<SearchRequest>(mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
+
+            return searchShop;
+        }
+
         public async Task<IEnumerable<ShopIndexResponse>> ShopIndexAsync()
         {
             var allShops = await dbContext.Shop

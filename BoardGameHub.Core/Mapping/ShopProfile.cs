@@ -18,6 +18,8 @@ namespace BoardGameHub.Core.Mapping
             CreateMap<EditShopRequest, Shop>();
             CreateMap<Shop,ShopDetailResponse>();
 
+            CreateMap<Shop, SearchRequest>();
+
         }
     }
 }

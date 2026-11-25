@@ -1,5 +1,6 @@
 ﻿using BoardGameHub.Core.DTOs.Shop.Request;
 using BoardGameHub.Core.DTOs.Shop.Response;
+using BoardGameHub.Core.Services;
 
 namespace BoardGameHub.Core.Contracts
 {
@@ -12,5 +13,6 @@ namespace BoardGameHub.Core.Contracts
         Task<EditShopResponse> EditShopFormAsync(Guid? id); 
         Task<bool> EditShopRequestAsync(EditShopRequest request);
         Task <ShopDetailResponse> DetailAsync(Guid? id);
+        Task <SearchRequest> SearchAsync (SearchRequest request);
     }
 }

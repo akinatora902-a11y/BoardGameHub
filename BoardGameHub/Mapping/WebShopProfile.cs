@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BoardGameHub.Core.DTOs.Shop.Request;
 using BoardGameHub.Core.DTOs.Shop.Response;
+using BoardGameHub.Data.Models;
 using BoardGameHub.ViewModel.ShopModels;
 
 namespace BoardGameHub.Mapping
