@@ -52,6 +52,8 @@ namespace BoardGameHub
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
+            app.UseStatusCodePagesWithRedirects("/Home/Error/{0}");
+
             app.Run();
         }
     }

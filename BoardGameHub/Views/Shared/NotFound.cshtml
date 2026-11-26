@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "404 - Page Not Found";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/notFound.css" asp-append-version="true" />
+</head>
+<body>
+    <main class="fullscreen-404">
+        <div class="content-box">
+            <h1>404</h1>
+            <h2>It looks like the die rolled off the board</h2>
+            <p>
+                The page you're looking for doesn't exist or has been moved.
+            </p>
+            <a asp-controller="Home" asp-action="Index" class="btn-home">Back to the beginning</a>
+        </div>
+    </main>
+</body>
+</html>

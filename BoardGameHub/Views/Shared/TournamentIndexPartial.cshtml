@@ -9,7 +9,9 @@
 
         @if (Model != null && Model.Any())
         {
-            <span class="badge rounded-pill badge-count-red">@Model.Count()</span>
+            <span class="badge rounded-pill badge-count-red">
+                @Model.Count()
+            </span>
         }
     </div>
 
@@ -30,40 +32,71 @@
                             <th scope="col">Starts</th>
                             <th scope="col">Status</th>
                             <th scope="col" class="text-end">Game</th>
+                            <th scope="col" class="text-end">Actions</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         @foreach (var tournament in Model)
                         {
                             <tr>
-                                <td class="fw-semibold">@tournament.Title</td>
-                                <td>
-                                    <span>
-                                        @tournament.StartDateAndTime.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)
-                                    </span>
-                                    <small class="ms-1">
-                                        @tournament.StartDateAndTime.ToString("HH:mm", CultureInfo.InvariantCulture)
-                                    </small>
+                                <td class="fw-semibold">
+                                    @tournament.Title
                                 </td>
+
+                                <td>
+                                    @tournament.StartDateAndTime.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)
+                                </td>
+
                                 <td>
                                     @if (tournament.Status)
                                     {
                                         <span class="status-pill status-active">
-                                            <span class="status-dot"></span> Active
+                                            <span class="status-dot"></span>
+                                            Active
                                         </span>
                                     }
                                     else
                                     {
                                         <span class="status-pill status-closed">
-                                            <span class="status-dot"></span> Closed
+                                            <span class="status-dot"></span>
+                                            Closed
                                         </span>
                                     }
                                 </td>
+
                                 <td class="text-end">
-                                    <a asp-controller="Game" asp-action="Details" asp-route-id="@tournament.GameId"
+                                    <a asp-controller="Game"
+                                       asp-action="Details"
+                                       asp-route-id="@tournament.GameId"
                                        class="btn btn-sm btn-outline-primary">
                                         View game &rarr;
                                     </a>
+                                </td>
+
+                                <td class="text-end">
+                                    @if (tournament.Status)
+                                    {
+                                        <form asp-controller="Tournament"
+                                              asp-action="Join"
+                                              asp-route-id="@tournament.Id"
+                                              method="post"
+                                              class="d-inline">
+
+                                            <button type="submit"
+                                                    class="btn btn-sm btn-join-tournament">
+                                                Join Tournament
+                                            </button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <button type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                                disabled>
+                                            Registration Closed
+                                        </button>
+                                    }
                                 </td>
                             </tr>
                         }
