@@ -14,6 +14,7 @@ namespace BoardGameHub.Controllers
             _logger = logger;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();

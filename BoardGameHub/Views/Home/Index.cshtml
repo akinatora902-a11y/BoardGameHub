@@ -2,7 +2,16 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container text-center py-4">
+    <p class="text-uppercase fw-semibold mb-2" style="letter-spacing: 3px; color: #c084fc; font-size: 2.1rem;">
+        Your Ultimate Tabletop Community
+    </p>
+
+    <div class="d-flex justify-content-center">
+        <img src="~/images/index.png"
+             asp-append-version="true"
+             class="img-fluid"
+             style="max-height: 700px; width: auto; object-fit: contain;"
+             alt="BoardGameHub лого и илюстрация за настолни игри" />
+    </div>
 </div>
