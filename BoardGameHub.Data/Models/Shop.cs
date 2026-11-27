@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using static BoardGameHub.Common.Entity.Const.ShopConst;
 
 namespace BoardGameHub.Data.Models
@@ -29,5 +31,11 @@ namespace BoardGameHub.Data.Models
         [Required]
         [StringLength(ShopOwnerMaxLen, ErrorMessage = "Owner cannot exceed 50 characters.")]
         public string Owner {  get; set; } = null!;
+
+        [Comment("Identifier of the Identity user who owns the shop")]
+        public string? OwnerId { get; set; }
+
+        [ForeignKey(nameof(OwnerId))]
+        public IdentityUser? OwnerUser { get; set; }
     }
 }

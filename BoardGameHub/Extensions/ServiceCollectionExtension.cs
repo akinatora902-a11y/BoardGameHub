@@ -1,4 +1,5 @@
-﻿using BoardGameHub.Core.Contracts;
+﻿using BoardGameHub.Common;
+using BoardGameHub.Core.Contracts;
 using BoardGameHub.Core.Mapping;
 using BoardGameHub.Core.Services;
 using BoardGameHub.Data;
@@ -58,7 +59,7 @@ namespace BoardGameHub.Extensions
             var roleManager = scope.ServiceProvider
                 .GetRequiredService<RoleManager<IdentityRole>>();
 
-            string[] roles = { "Admin", "User", "Shop" };
+            string[] roles = { RoleNames.Admin, RoleNames.User, RoleNames.Shop };
 
             foreach (var role in roles)
             {

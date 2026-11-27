@@ -168,7 +168,13 @@ namespace BoardGameHub.Data.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasComment("Owner Description");
 
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("nvarchar(450)")
+                        .HasComment("Identifier of the Identity user who owns the shop");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Shop", t =>
                         {
@@ -533,6 +539,15 @@ namespace BoardGameHub.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("BoardGameHub.Data.Models.Shop", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "OwnerUser")
+                        .WithMany()
+                        .HasForeignKey("OwnerId");
+
+                    b.Navigation("OwnerUser");
                 });
 
             modelBuilder.Entity("BoardGameHub.Data.Models.Tournament", b =>

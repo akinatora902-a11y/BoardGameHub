@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using BoardGameHub.Data;
+using BoardGameHub.Common;
 
 namespace BoardGameHub.Areas.Identity.Pages.Account;
 
@@ -78,6 +79,11 @@ public class RegisterModel : PageModel
         [Display(Name = "Email")]
         public string Email { get; set; } = default!;
 
+
+        [Required]
+        [Display(Name = "Account type")]
+        public string Role { get; set; } = RoleNames.User;
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -109,6 +115,13 @@ public class RegisterModel : PageModel
         returnUrl ??= Url.Content("~/");
         if (ModelState.IsValid)
         {
+            var allowedRoles = new[] { RoleNames.User, RoleNames.Shop };
+
+            if (!allowedRoles.Contains(Input.Role))
+            {
+                ModelState.AddModelError("Input.Role", "Invalid account type.");
+                return Page();
+            }
             var user = CreateUser();
 
             await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
@@ -117,6 +130,16 @@ public class RegisterModel : PageModel
 
             if (result.Succeeded)
             {
+                var roleResult = await _userManager.AddToRoleAsync(user, Input.Role);
+
+                if (!roleResult.Succeeded)
+                {
+                    foreach (var error in roleResult.Errors)
+                        ModelState.AddModelError(string.Empty, error.Description);
+
+                    return Page();
+                }
+
                 _logger.LogInformation("User created a new account with password.");
 
                 var userId = await _userManager.GetUserIdAsync(user);
